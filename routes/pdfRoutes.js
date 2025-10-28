@@ -12,6 +12,9 @@ const { uploadPDF } = require("../controllers/pdfController");
 const UPLOAD_DIR = path.join(__dirname, "..", "uploads");
 if(!fs.existsSync(UPLOAD_DIR)) fs.mkdirSync(UPLOAD_DIR, {recursive: true});
 
+const textDir = path.join(__dirname, "..", "texts");
+if (!fs.existsSync(textDir)) fs.mkdirSync(textDir, { recursive: true });
+
 // multer config
 const storage = multer.diskStorage({
     destination: (req, res, cb) => cb(null, UPLOAD_DIR),

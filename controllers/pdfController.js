@@ -2,6 +2,11 @@ const fs = require("fs");
 const path = require("path");
 const pdfParse = require("pdf-parse");
 
+
+const textDir = path.join(__dirname, "..", "texts");
+if (!fs.existsSync(textDir)) fs.mkdirSync(textDir, { recursive: true });
+
+
 exports.uploadPDF = async (req, res) => {
   try {
 
@@ -28,6 +33,16 @@ exports.uploadPDF = async (req, res) => {
 
     console.log("Number of pages:", numPages);
     console.log("First 200 characters of text:", text.slice(0, 200));
+
+
+
+    //saving the text in the file
+
+    const textFilePath = path.join(textDir, `${id}.txt`);
+    fs.writeFileSync(textFilePath, text, "utf-8");
+    console.log("Saved PDF text to file:", textFilePath);
+
+
 
     const snippet = text.slice(0, 1000);
 
