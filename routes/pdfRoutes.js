@@ -6,7 +6,10 @@ const fs = require('fs');
 const crypto = require('crypto');
 
 
+
 const { uploadPDF } = require("../controllers/pdfController");
+const { processPDFText } = require("../controllers/processPDFController");
+
 
 
 const UPLOAD_DIR = path.join(__dirname, "..", "uploads");
@@ -26,7 +29,6 @@ const storage = multer.diskStorage({
 });
 
 
-
 const upload = multer({
     storage,
     limits: {fileSize: 25 * 1024 * 1024},
@@ -40,5 +42,8 @@ const upload = multer({
 
 
 router.post("/upload", upload.single("pdf"), uploadPDF);
+
+router.get("/process/:pdfId", processPDFText);
+
 
 module.exports = router;
