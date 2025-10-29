@@ -12,7 +12,7 @@ app.use(express.json());
 const uploadDir = path.join(__dirname, "uploads");
 if(!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, {recursive: true});
 
-const textDir = path.join(__dirname, "..", "texts");
+const textDir = path.join(__dirname, "texts");
 if (!fs.existsSync(textDir)) fs.mkdirSync(textDir, { recursive: true });
 
 //routes 
